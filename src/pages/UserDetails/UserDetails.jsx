@@ -25,6 +25,7 @@ const UserDetails = () => {
 
   return (
     <div>
+      <button onClick={() => navigate(-1)}>Go back</button>
       <img src={user.image} alt={`${user.image} ${user.lastName}`} />
       <h2>
         {user.firstName} {user.lastName}
