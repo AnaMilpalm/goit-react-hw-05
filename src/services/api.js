@@ -23,6 +23,16 @@ export const fetchMovieById = async (id) => {
   return data;
 };
 
+export const fetchCastByMovieId = async (id) => {
+  const { data } = await axios.get(`/movie/${id}/credits`, {
+    params: {
+      api_key: API_KEY,
+      language: "en-US",
+    },
+  });
+  return data;
+};
+
 // export const fetchUserById = async (id) => {
 //   const { data } = await axios.get(`/users/${id}`);
 //   return data;
