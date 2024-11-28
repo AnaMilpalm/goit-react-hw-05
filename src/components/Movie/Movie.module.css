@@ -1,0 +1,38 @@
+.titleMovie {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.listItem {
+  width: 200px;
+  height: 300px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+  padding: 8px;
+  border: 1px solid #000;
+  border-radius: 8px;
+}
+
+.imgContainer {
+  /* display: block; */
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+}
+
+image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

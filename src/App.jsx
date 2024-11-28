@@ -1,54 +1,35 @@
-import { NavLink, Route, Routes } from "react-router-dom";
-import clsx from "clsx";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import About from "./pages/About/About";
+// import About from "./pages/About/About";
 import NotFound from "./pages/NotFound/NotFound";
 import css from "./App.module.css";
-// import Products from "./pages/Products/Products";
-// import Blog from "./pages/Blog/Blog";
-// import ProductDetails from "./pages/ProductDetails/ProductDetails";
-import Users from "./pages/Users/Users";
-import UserDetails from "./pages/UserDetails/UserDetails";
-import Posts from "./pages/Posts/Posts";
-
-const buildLinkClass = ({ isActive }) => {
-  return clsx(css.link, isActive && css.active);
-};
+// import Movies from "./pages/Movies/Movies";
+// import Movie from "./components/Movie/Movie";
+import MovieItem from "./pages/MovieItem/MovieItem";
+import Header from "./components/Header/Header";
+import SearchBar from "./components/SearchBar/SearchBar";
+import Cast from "./components/Cast/Cast";
+import Reviews from "./components/Reviews/Reviews";
 
 function App() {
   return (
     <div className={css.wrapper}>
-      <nav className={css.nav}>
-        <NavLink to="/" className={buildLinkClass}>
-          Home
-        </NavLink>
-        <NavLink to="about" className={buildLinkClass}>
-          About
-        </NavLink>
-        <NavLink to="products" className={buildLinkClass}>
-          Products
-        </NavLink>
-        <NavLink to="users" className={buildLinkClass}>
-          Users
-        </NavLink>
-      </nav>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="movies" element={<SearchBar />} />
+        <Route path="movies/:movieId" element={<MovieItem />}>
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
 
-      <div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="users" element={<Users />} />
-          <Route path="users/:userId" element={<UserDetails />}>
-            <Route path="info" element={<h2>test info</h2>} />
-            <Route path="posts" element={<Posts />} />
-          </Route>
-          <Route path="about" element={<About />}>
-            <Route path="aim" element={<h2>Aim</h2>} />
+        {/* <Route path="movies" element={<About />} /> */}
+        {/* <Route path="aim" element={<h2>Aim</h2>} />
             <Route path="company" element={<h2>Company</h2>} />
-            <Route path="team" element={<h2>Team</h2>} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
+            <Route path="team" element={<h2>Team</h2>} /> */}
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }

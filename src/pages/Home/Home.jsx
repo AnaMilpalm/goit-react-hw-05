@@ -1,5 +1,11 @@
+import ListMovies from "../../components/ListMovies/ListMovies";
+
 const Home = () => {
-  return <div>Home page</div>;
+  return (
+    <div>
+      <ListMovies />
+    </div>
+  );
 };
 
 export default Home;

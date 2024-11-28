@@ -1,36 +1,8 @@
-.nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  gap: 40px;
-  padding: 20px 0;
-}
-a {
-  display: flex;
-}
-
 .wrapper {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-
-.link {
-  background-color: antiquewhite;
-  padding: 5px 20px;
-  border-radius: 5px;
-  color: #262826;
-}
-
-.link:hover,
-.link:focus {
-  color: #262826;
-  box-shadow: 0 0 5px 2px rgba(rgb(76, 128, 76), rgb(76, 128, 76), blue, 0.7);
-  transform: translate(3px, 5px);
-  -webkit-transform: translate(3px, 5px);
-}
-
-.active {
-  background-color: rgb(218, 144, 47);
-  color: #fff;
+  flex-wrap: wrap;
+  flex-direction: column;
+  max-width: 1200px;
 }

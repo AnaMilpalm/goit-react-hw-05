@@ -3,7 +3,7 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import { fetchUserById } from "../../services/api";
 
 const UserDetails = () => {
-  const { userId } = useParams();
+  //   const { userId } = useParams();
 
   const [user, setUser] = useState(null);
 
