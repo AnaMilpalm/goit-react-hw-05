@@ -2,17 +2,23 @@ import { useState } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import ListMovies from "../../components/ListMovies/ListMovies";
 import { fetchMovies } from "../../services/api";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams(); //оголошення  збергаємо query url
+  const location = useLocation();
+  console.log(location);
 
-  const handleSetQuery = async (newQuery) => {
-    if (newQuery === query) return; // Уникаємо зайвого запиту, якщо запит не змінився
-    setQuery(newQuery);
+  const query = searchParams.get("query") ?? ""; // витягуємо
+  const handleSetQuery = async (newValue) => {
+    // if (newValue === query) return; // Уникаємо зайвого запиту, якщо запит не змінився
+    // setQuery(newValue);
+    searchParams.set("query", newValue);
+    setSearchParams(searchParams); // встановлюємо\зберігаємо урл
 
     try {
-      const data = await fetchMovies(newQuery); // Виконуємо пошуковий запит
+      const data = await fetchMovies(newValue); // Виконуємо пошуковий запит
       setMovies(data.results || []);
     } catch (error) {
       console.error("Error fetching movies:", error.message);
@@ -23,7 +29,7 @@ const Movies = () => {
     <div>
       <h1>Search Movies</h1>
       <SearchBar handleSetQuery={handleSetQuery} initialQuery={query} />
-      <ListMovies movies={movies} />
+      <ListMovies movies={movies} location={location} />
     </div>
   );
 };

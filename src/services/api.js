@@ -21,6 +21,7 @@ export const fetchMovies = async (query) => {
       include_adult: false,
       language: "en-US",
       page: 1,
+      limit: 200,
     },
   });
   return data;

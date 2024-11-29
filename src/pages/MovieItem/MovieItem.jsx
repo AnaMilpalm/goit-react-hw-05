@@ -1,4 +1,10 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchMovieById } from "../../services/api";
 import css from "./MovieItem.module.css";
@@ -6,6 +12,9 @@ import css from "./MovieItem.module.css";
 const MovieItem = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
 
   useEffect(() => {
     const getData = async () => {
@@ -26,6 +35,7 @@ const MovieItem = () => {
 
   return (
     <div className={css.bg}>
+      <Link to={location.state}>Go back</Link>
       <div className={css.span}>
         <div
           className={css.imgContainer}
