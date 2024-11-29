@@ -2,13 +2,11 @@ import { useState } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import ListMovies from "../../components/ListMovies/ListMovies";
 import { fetchMovies } from "../../services/api";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams(); //оголошення  збергаємо query url
-  const location = useLocation();
-  console.log(location);
 
   const query = searchParams.get("query") ?? ""; // витягуємо
   const handleSetQuery = async (newValue) => {

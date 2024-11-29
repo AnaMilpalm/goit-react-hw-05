@@ -5,7 +5,7 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchMovieById } from "../../services/api";
 import css from "./MovieItem.module.css";
 
@@ -15,6 +15,7 @@ const MovieItem = () => {
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location);
+  const goBackLink = useRef(location.state);
 
   useEffect(() => {
     const getData = async () => {
@@ -35,7 +36,7 @@ const MovieItem = () => {
 
   return (
     <div className={css.bg}>
-      <Link to={location.state}>Go back</Link>
+      <Link to={goBackLink.current ?? "/movies"}>Go back</Link>
       <div className={css.span}>
         <div
           className={css.imgContainer}
