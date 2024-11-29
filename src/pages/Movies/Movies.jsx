@@ -4,20 +4,16 @@ import ListMovies from "../../components/ListMovies/ListMovies";
 import { fetchMovies } from "../../services/api";
 
 const Movies = () => {
+  const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
 
   const handleSetQuery = async (newQuery) => {
+    if (newQuery === query) return; // Уникаємо зайвого запиту, якщо запит не змінився
     setQuery(newQuery);
 
-    if (newQuery.trim() === "") {
-      setSearchResults([]); // Порожній список для порожнього запиту
-      return;
-    }
-
     try {
-      const data = await fetchMovies(newQuery);
-      setSearchResults(data.results || []); // Оновлення результатів пошуку
+      const data = await fetchMovies(newQuery); // Виконуємо пошуковий запит
+      setMovies(data.results || []);
     } catch (error) {
       console.error("Error fetching movies:", error.message);
     }
@@ -26,10 +22,8 @@ const Movies = () => {
   return (
     <div>
       <h1>Search Movies</h1>
-      <SearchBar handleSetQuery={handleSetQuery} />
-      {searchResults.length > 0 && (
-        <ListMovies movies={searchResults} query={query} />
-      )}
+      <SearchBar handleSetQuery={handleSetQuery} initialQuery={query} />
+      <ListMovies movies={movies} />
     </div>
   );
 };

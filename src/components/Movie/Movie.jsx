@@ -12,7 +12,11 @@ const Movie = ({ movies }) => {
             <div
               className={css.imgContainer}
               style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.backdrop_path})`,
+                backgroundImage: `url(${
+                  movie.backdrop_path
+                    ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
+                    : "https://via.placeholder.com/500x750?text=No+Image"
+                })`,
               }}
             ></div>
           </NavLink>

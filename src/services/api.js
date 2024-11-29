@@ -13,6 +13,19 @@ export const fetchTrendMovie = async () => {
   return data.results;
 };
 
+export const fetchMovies = async (query) => {
+  const { data } = await axios.get("/search/movie", {
+    params: {
+      api_key: API_KEY,
+      query,
+      include_adult: false,
+      language: "en-US",
+      page: 1,
+    },
+  });
+  return data;
+};
+
 export const fetchMovieById = async (id) => {
   const { data } = await axios.get(`/movie/${id}`, {
     params: {
