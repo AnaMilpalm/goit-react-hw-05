@@ -8,15 +8,13 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams(); //оголошення  збергаємо query url
 
-  const query = searchParams.get("query") ?? ""; // витягуємо
+  const query = searchParams.get("query") ?? "";
   const handleSetQuery = async (newValue) => {
-    // if (newValue === query) return; // Уникаємо зайвого запиту, якщо запит не змінився
-    // setQuery(newValue);
     searchParams.set("query", newValue);
     setSearchParams(searchParams); // встановлюємо\зберігаємо урл
 
     try {
-      const data = await fetchMovies(newValue); // Виконуємо пошуковий запит
+      const data = await fetchMovies(newValue);
       setMovies(data.results || []);
     } catch (error) {
       console.error("Error fetching movies:", error.message);

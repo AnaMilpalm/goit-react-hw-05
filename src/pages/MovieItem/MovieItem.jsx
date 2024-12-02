@@ -5,7 +5,7 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { fetchMovieById } from "../../services/api";
 import css from "./MovieItem.module.css";
 
@@ -15,7 +15,7 @@ const MovieItem = () => {
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location);
-  const goBackLink = useRef(location.state);
+  const goBackLink = useRef(location.state ?? "/movies");
 
   useEffect(() => {
     const getData = async () => {
@@ -36,7 +36,7 @@ const MovieItem = () => {
 
   return (
     <div className={css.bg}>
-      <Link to={goBackLink.current ?? "/movies"}>Go back</Link>
+      <Link to={goBackLink.current}>Go back</Link>
       <div className={css.span}>
         <div
           className={css.imgContainer}
@@ -63,7 +63,9 @@ const MovieItem = () => {
           <Link to="cast">cast</Link>
           <Link to="reviews">reviews</Link>
         </nav>
-        <Outlet />
+        <Suspense fallback={<h2>Loading for MovieItem</h2>}>
+          <Outlet />
+        </Suspense>
       </div>
     </div>
   );
