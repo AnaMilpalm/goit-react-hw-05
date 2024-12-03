@@ -7,9 +7,9 @@ import {
 } from "react-router-dom";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { fetchMovieById } from "../../services/api";
-import css from "./MovieItem.module.css";
+import css from "./MovieDetailesPage.module.css";
 
-const MovieItem = () => {
+const MovieDetailesPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const navigate = useNavigate();
@@ -71,4 +71,4 @@ const MovieItem = () => {
   );
 };
 
-export default MovieItem;
+export default MovieDetailesPage;

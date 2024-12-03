@@ -1,7 +1,7 @@
-import css from "./ListMovies.module.css";
-
+import css from "./MovieList.module.css";
 import Movie from "../Movie/Movie";
-const ListMovies = ({ movies, location }) => {
+
+const MovieList = ({ movies, location }) => {
   return (
     <div>
       <ul className={css.list}>
@@ -15,4 +15,4 @@ const ListMovies = ({ movies, location }) => {
   );
 };
 
-export default ListMovies;
+export default MovieList;

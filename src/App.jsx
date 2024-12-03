@@ -1,23 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-// import Home from "./pages/Home/Home";
-// import About from "./pages/About/About";
-// import NotFound from "./pages/NotFound/NotFound";
 import css from "./App.module.css";
-// import Movies from "./pages/Movies/Movies";
-// import Movie from "./components/Movie/Movie";
-// import MovieItem from "./pages/MovieItem/MovieItem";
 import Header from "./components/Header/Header";
-
-// import Cast from "./components/Cast/Cast";
-// import Reviews from "./components/Reviews/Reviews";
 import { lazy, Suspense } from "react";
 
-const Home = lazy(() => import("./pages/Home/Home"));
-const Movies = lazy(() => import("./pages/Movies/Movies"));
-const MovieItem = lazy(() => import("./pages/MovieItem/MovieItem"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
+const MovieDetailesPage = lazy(() =>
+  import("./pages/MovieDetailesPage/MovieDetailesPage")
+);
 const Cast = lazy(() => import("./components/Cast/Cast"));
 const Reviews = lazy(() => import("./components/Reviews/Reviews"));
-const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 function App() {
   return (
@@ -25,14 +18,14 @@ function App() {
       <Header />
       <Suspense fallback={<h2>Loading ... </h2>}>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="movies" element={<Movies />} />
-          <Route path="movies/:movieId" element={<MovieItem />}>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="movies" element={<MoviesPage />} />
+          <Route path="movies/:movieId" element={<MovieDetailesPage />}>
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
 
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </div>
